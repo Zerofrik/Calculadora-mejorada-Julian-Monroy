@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic.FileIO;
+using System;
 
 namespace Calculadora_2_Julian_Monroy
 {
@@ -6,51 +7,104 @@ namespace Calculadora_2_Julian_Monroy
     {
         static void Main(string[] args)
         {
-            int suma = 1;
-            int resta = 2;
-            int division = 3;
-            int multiplicacion = 4;
-            int raiz_cuadrada = 5;
-            int cuadrado = 6;
 
             Console.WriteLine("ingrese la operacion que desea realizar");
-            Console.WriteLine("1.suma 2.resta 3.division 4.multiplicacion 5.raiz cuadrada 6.cuadrado");
-            int operacion = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("ingrese el primer valor");
-            int valor1 = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("ingrese el segundo valor");
-            int valor2 = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("1. suma ");
+            Console.WriteLine("2. resta ");
+            Console.WriteLine("3. division ");
+            Console.WriteLine("4. multiplicacion ");
+            Console.WriteLine("5. cuadrado/elevado ");
+            Console.WriteLine("6. raiz cuadrada ");
 
-            printMessage(0);
+            string operacion = Console.ReadLine();
+            double resultado = 0;
 
-
-            static double Operation(int operacion, int valor1, int valor2)
+            switch (operacion)
             {
+                case "1":
+                    Console.WriteLine("Ingrese el primer valor a sumar:");
+                    int valor1 = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Ingrese el segundo valor a sumar:");
+                    int valor2 = int.Parse(Console.ReadLine());
+                    resultado = Operation(operacion, valor1, valor2);
+                    break;
 
-                switch (operacion)
+                case "2":
+                    Console.WriteLine("Ingrese el primer valor a restar:");
+                    valor1 = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Ingrese el segundo valor para restar:");
+                    valor2 = int.Parse(Console.ReadLine());
+                    resultado = Operation(operacion, valor1, valor2);
+                    break;
+
+                case "3":
+                    Console.WriteLine("Ingrese el primer valor a ser dividido:");
+                    valor1 = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Ingrese el segundo valor para dividir:");
+                    valor2 = int.Parse(Console.ReadLine());
+                    resultado = Operation(operacion, valor1, valor2);
+                    break;
+
+                case "4":
+                    Console.WriteLine("Ingrese el primer valor a multiplicar:");
+                    valor1 = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Ingrese el segundo valor para multiplicar:");
+                    valor2 = int.Parse(Console.ReadLine());
+                    resultado = Operation(operacion, valor1, valor2);
+                    break;
+
+                case "5":
+                    Console.WriteLine("Ingrese el número que va a ser elevado:");
+                    valor1 = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Ingrese a cuanto lo va a elevar");
+                    valor2 = int.Parse(Console.ReadLine());
+                    resultado = Operation(operacion, valor1, valor2);
+                    break;
+
+                case "6":
+                    Console.WriteLine("Ingrese el valor que quiere sacar la raiz cuadrada:");
+                    valor1 = int.Parse(Console.ReadLine());
+                    resultado = Operation(operacion, valor1, 0);
+                    break;
+
+                default:
+                    Console.WriteLine("Este valor no es valido, vuelva a intentar jsjs saludos");
+                    break;
+            }
+
+            printMessage(resultado);
+
+            static double Operation(string opcion, int valor1, int valor2)
+            {
+                switch (opcion)
                 {
-                    case 1:
+                    case "1":
                         return valor1 + valor2;
-                    case 2:
+
+                    case "2":
                         return valor1 - valor2;
-                    case 3:
+
+                    case "3":
                         return valor1 / valor2;
-                    case 4:
+
+                    case "4":
                         return valor1 * valor2;
-                    case 5:
-                        return Math.Sqrt(valor1);
-                    case 6:
+
+                    case "5":
                         return Math.Pow(valor1, valor2);
 
+                    case "6":
+                        return Math.Sqrt(valor1);
+
+                    default:
+                        return 0;
                 }
-                return 0;
             }
 
-            static void printMessage(double result)
+            static void printMessage(double resultado)
             {
-                Console.WriteLine("el resultado de la operacion es "  );
+                Console.WriteLine("El resultado de la operacion es: " + resultado);
             }
-
         }
     }
 }
